@@ -7,3 +7,5 @@ compile with:
 gcc main.c -o boxes -lncurses
 
 change "#define TS 15" to modify the number of boxes.
+
+example: https://asciinema.org/a/hzHc0HGezxkgnqgOkMwrlFqQd
