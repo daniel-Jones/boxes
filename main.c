@@ -1,7 +1,6 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <string.h>
 #include <time.h>
 
 #define TS 15 /* total squares */
@@ -11,6 +10,8 @@ void destroy_win(WINDOW *local_win);
 void setup();
 void logic();
 void draw();
+
+
 
 struct square
 {
@@ -65,6 +66,12 @@ void setup()
 	init_pair(1, COLOR_BLACK, COLOR_RED);
 	init_pair(2, COLOR_BLACK, COLOR_BLUE);
 	init_pair(3, COLOR_BLACK, COLOR_GREEN);
+	init_pair(4, COLOR_BLACK, COLOR_YELLOW);
+	init_pair(5, COLOR_BLACK, COLOR_MAGENTA);
+	init_pair(6, COLOR_BLACK, COLOR_CYAN);
+	init_pair(7, COLOR_BLACK, COLOR_WHITE);
+
+
 	/* seed random generator */
 	srand(time(NULL));
 	/* set values of each square */
@@ -73,12 +80,12 @@ void setup()
 	{
 		squares[x].dx = rand() % 2; /* 0 = left. 1 = right */
 		squares[x].dy = rand() % 2; /* 0 = down, 1 = up */
-		squares[x].w = 4;
-		squares[x].h = 2;
+		squares[x].w = rand() % 10 + 1;
+		squares[x].h = rand() % 6 + 1;
 		squares[x].sy = rand() % LINES;
 		squares[x].sx = rand() % COLS;
 		squares[x].win = create_newwin(squares[x].h, squares[x].w, squares[x].sy, squares[x].sx);
-		wbkgd(squares[x].win, COLOR_PAIR(rand() % 3 + 1));
+		wbkgd(squares[x].win, COLOR_PAIR(rand() % 7 + 1));
 		squares[x].speed = rand() % 2 + 1;
 	}
 }
